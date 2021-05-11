@@ -1,1 +1,58 @@
-<app-employee></app-employee>
+<!-- <app-employee></app-employee> -->
+<header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+    <img routerLink="home" src="assets/capgi_logo.png" alt="capgi_logo" width="18%" style="padding: 10px; cursor: pointer;">
+
+  <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0" style="font-size: 17px;">
+    <li><a href="#" routerLink="home" *ngIf="!isLoggedIn" routerLinkActive="activeTab" class="nav-link px-2 link-secondary">Home</a></li>
+    <li><a href="#" routerLink="user" *ngIf="showEmployeeBoard" routerLinkActive="activeTab" class="nav-link px-2 link-secondary">Dashboard</a></li>
+    <li><a href="#" routerLink="admin" *ngIf="showAdminBoard" routerLinkActive="activeTab" class="nav-link px-2 link-secondary">Dashboard</a></li>
+    <li><a href="#" routerLink="products" *ngIf="showEmployeeBoard" routerLinkActive="activeTab" class="nav-link px-2 link-dark">Products</a></li>
+    <li><a href="#" routerLink="qr" routerLinkActive="activeTab" class="nav-link px-2 link-dark">Share</a></li>
+    <li><a href="#" routerLink="contact" routerLinkActive="activeTab" class="nav-link px-2 link-dark">Contact</a></li>
+    <li><a href="#" routerLink="about" routerLinkActive="activeTab" class="nav-link px-2 link-dark">About</a></li>
+  </ul>
+
+  
+
+  <div *ngIf="(router.url == '/home' || router.url == '/contact' || router.url == '/about' || router.url == '/qr') && !isLoggedIn" class="col-md-2 text-end">
+    <button routerLink="login" type="button" class="btn btn-outline-primary me-2 mr-3">Login</button>
+    <button routerLink="signup" type="button" class="btn btn-primary mr-3">Sign-up</button>
+  </div>
+
+
+
+  <div *ngIf="isLoggedIn"  class="d-flex align-items-center">
+    <!-- <form *ngIf='!showAdminBoard' class="w-100 me-3">
+      <input type="search" class="form-control" placeholder="Search..." value="{{username}}" aria-label="Search" disabled>
+    </form> -->
+    
+    <h5 style="float: left;">{{username}}</h5>
+    <div class="flex-shrink-0 px-3 dropdown">
+      <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
+        <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
+      </a>
+      <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
+        <li><a class="dropdown-item" (click)="router.navigate(['/employeeorders',id, username]);" *ngIf="showEmployeeBoard">Your Orders</a></li>
+        <li><a class="dropdown-item" (click)="router.navigate(['/updateprofile',id]);">Update Profile</a></li>
+        <li><a class="dropdown-item" href="#" (click)="logout()">Sign out</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div *ngIf="router.url == '/login'!isLoggedIn" class="col-md-2 text-end">
+    <button routerLink="signup" type="button" class="btn btn-primary">Sign-up</button>
+  </div>
+
+  <div *ngIf="router.url == '/signup' !isLoggedIn" class="col-md-2 text-end">
+    <button routerLink="login" type="button" class="btn btn-outline-primary me-2">Login</button>
+  </div>
+
+
+  
+  
+
+  
+
+</header>
+<router-outlet></router-outlet>
+<app-footer></app-footer>

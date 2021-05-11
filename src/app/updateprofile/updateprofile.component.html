@@ -1,0 +1,96 @@
+<div class="container">
+    <div class="row py-5 mt-4 align-items-center">
+        <!-- For Demo Purpose -->
+        <div class="col-md-5 pr-lg-5 mb-5 mb-md-0">
+            <img src="https://res.cloudinary.com/mhmd/image/upload/v1569543678/form_d9sh6m.svg" alt="" class="img-fluid mb-3 d-none d-md-block">
+            <h1>Update Your Profile</h1>
+            
+        </div>
+
+        <!-- Registeration Form -->
+        <div class="col-md-7 col-lg-6 ml-auto" *ngIf="emp">
+            <hr>
+            <h4><strong>Username - </strong> <span style="color: #0062cc;">{{emp.username}}</span></h4>
+            <h4><strong>Email - </strong> <span style="color: #0062cc;">{{emp.email}}</span></h4>
+            <h4><strong>Mobile Number - </strong> <span style="color: #0062cc;">{{emp.mobileNumber}}</span></h4>
+            <h4><strong>Address - </strong> <span style="color: #0062cc;">{{emp.location}}</span></h4>
+            
+            <hr>
+            <form  *ngIf="!isSuccessful"
+            name="form"
+            (ngSubmit)="f.form.valid && onSubmit()"
+            #f="ngForm"
+            novalidate>
+                <div class="row">
+
+                    <!-- Mobile Number -->
+                    <div class="input-group col-lg-12 mb-5 form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                <i class="fa fa-phone-square text-muted"></i>
+                            </span>
+                        </div>
+                        <input id="mobilenumber" type="tel"
+                        name="mobilenumber"
+                        [(ngModel)]="form.mobilenumber"
+                        required
+                        minlength="10"
+                        maxlength="10"
+                        #mobilenumber="ngModel" placeholder="Mobile Number" class="form-control bg-white border-left-0 border-md">
+                        
+                        <div class="alert-danger col-lg-12 p-2" style="position: absolute;top: 38px; width: 94.7%;" *ngIf="mobilenumber.errors && f.submitted">
+                            <div *ngIf="mobilenumber.errors.required">Mobile Number is required!</div>
+                            <div *ngIf="mobilenumber.errors.minlength">
+                              Mobile Number must be at least 10 digits!
+                            </div>
+                            <div *ngIf="mobilenumber.errors.maxlength">
+                              Mobile Number must be at most 10 digits!
+                            </div>
+                          </div>
+                    </div>
+
+
+                    <!-- Address -->
+                    <div class="input-group col-lg-12 mb-5 form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                <i class="fa fa-home text-muted fa-lg"></i>
+                            </span>
+                        </div>
+                        <input id="address" type="text"
+                        name="address"
+                        [(ngModel)]="form.address"
+                        required
+                        #address="ngModel" placeholder="Address" class="form-control bg-white border-left-0 border-md">
+                    
+
+                        <div class="alert-danger col-lg-12 p-2" style="position: absolute;top: 38px; width: 94.7%;" *ngIf="address.errors && f.submitted">
+                            <div *ngIf="address.errors.required">Address is required!</div>
+                          </div>
+                    </div>
+
+
+                    <hr>
+                    <!-- Submit Button -->
+                    <div class="form-group col-lg-12 mx-auto mb-0">
+                        <button class="btn btn-primary btn-block py-3 font-weight-bold fa-lg">Update your profile</button>
+                        
+                    </div>
+
+                    <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
+                        Updation failed!<br />{{ errorMessage }}
+                      </div>                
+
+                </div>
+            </form>
+
+            <div class="alert alert-success" *ngIf="isSuccessful">
+                Profile Updated successfully!
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+

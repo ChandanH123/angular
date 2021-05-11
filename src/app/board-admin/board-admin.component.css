@@ -1,0 +1,5 @@
+.nav-tabs .nav-link:focus, .nav-link.active
+{
+    background-color: #007bff;
+    color:white;
+}

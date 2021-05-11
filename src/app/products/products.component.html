@@ -1,0 +1,36 @@
+   <!-- Main Navigation -->
+   <header>
+    <div class="jumbotron color-grey-light mt-70" style="padding: 0px; height: 100px;">
+      <div class="d-flex align-items-center h-100">
+        <div class="container text-center py-5">
+          <h3 class="mb-0">Products</h3>
+        </div>
+      </div>
+    </div>
+  </header>
+  <!-- Main Navigation -->
+  <div class="container">
+  <!-- Product Cards -->
+  <div class="container pb-5 mb-sm-1">
+    <!-- Categories grid-->
+    <div class="row">
+        <!-- Category-->
+        <div class="col-md-4 col-sm-6 mb-5" *ngFor="let res of resourceList">
+            <div class="card border-0 mb-grid-gutter onHover">
+                <div class="card-body border mt-n1 py-4 text-center">
+                      <div class="main-img"><img src="assets/resource images/{{res.resImage}}" alt="{{res.resImage}}" width="100%" style="position: relative;"></div>
+                      <hr>
+                      <h2 class="h5 mb-1">{{res.resTitle}}</h2>
+                      <hr>
+                      <span class="d-block mt-3 mb-2 font-size-xs text-muted">Price : <span class="font-weight-semibold">{{res.resPrice | currency:'INR'}}</span></span>
+                      <span class="d-block mb-2 font-size-xs text-muted">Category : <span class="font-weight-semibold">{{res.category.catName}}</span></span>
+                      <hr>
+                      <a class="btn btn-pill btn-outline-primary btn-sm" (click)="selectedProduct(res)" style="width: 50%;">View Product</a>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+  </div><!--container end -->
+  
+  
