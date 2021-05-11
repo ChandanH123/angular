@@ -1,3 +1,4 @@
+<div *ngIf="role=='ROLE_EMPLOYEE'">
 <header>
   <div class="jumbotron color-grey-light mt-70" style="padding: 0px; height: 100px;">
     <div class="d-flex align-items-center h-100">
@@ -76,4 +77,8 @@
   </div>
 </div>
 </div><!--container end -->
+</div>
 
+<div class="alert alert-danger" *ngIf="role!='ROLE_EMPLOYEE'">
+  <strong>Unauthorized Access!</strong>
+</div>

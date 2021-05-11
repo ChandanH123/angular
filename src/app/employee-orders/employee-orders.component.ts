@@ -48,6 +48,6 @@ export class EmployeeOrdersComponent implements OnInit {
 
   selectedProduct(res:any)
   {
-    this.router.navigate(['/productdetails',this.empId,JSON.stringify(res)]);
+    this.router.navigate(['/productdetails',this.empId, this.username, JSON.stringify(res)]);
   }
 }

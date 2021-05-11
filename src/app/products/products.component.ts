@@ -14,6 +14,7 @@ export class ProductsComponent implements OnInit {
   resourceList: any;
   empId: any;
   isLoggedIn=false;
+  username: any;
 
 
   constructor(public router: Router, private userService: UserService, private authService: AuthService, private tokenStorageService: TokenStorageService) { }
@@ -26,7 +27,6 @@ export class ProductsComponent implements OnInit {
       },
       err => {
         this.content = JSON.parse(err.error).message;
-        this.router.navigate(['/login']);
       }
     );
 
@@ -35,6 +35,7 @@ export class ProductsComponent implements OnInit {
     if (this.isLoggedIn) {
       const user = this.tokenStorageService.getUser();
       this.empId = user.id;
+      this.username=user.username;
     }
 
 this.getAllResources();
@@ -52,6 +53,6 @@ this.getAllResources();
 
   selectedProduct(res:any)
   {
-    this.router.navigate(['/productdetails', this.empId, JSON.stringify(res)]);
+    this.router.navigate(['/productdetails', this.empId, this.username, JSON.stringify(res)]);
   }
 }

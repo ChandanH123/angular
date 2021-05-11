@@ -16,6 +16,7 @@ import { QrComponent } from './qr/qr.component';
 import { ManageemployeesComponent } from './manageemployees/manageemployees.component';
 import { ManageresourcesComponent } from './manageresources/manageresources.component';
 import { ManagecategoriesComponent } from './managecategories/managecategories.component';
+import { AuthGuardGuard } from './auth-guard.guard';
 
 
 const routes: Routes = [
@@ -25,18 +26,17 @@ const routes: Routes = [
   { path: 'signup', component: SignupComponent},
   { path: 'contact', component: ContactComponent},
   { path: 'about', component: AboutComponent},
-  { path: 'user', component: BoardUserComponent },
-  { path: 'mod', component: BoardModeratorComponent },
-  { path: 'admin', component: BoardAdminComponent,
+  { path: 'user', component: BoardUserComponent,canActivate:[AuthGuardGuard] },
+  { path: 'admin', component: BoardAdminComponent,canActivate:[AuthGuardGuard],
     children: [
       {path: 'manageemployees',component:ManageemployeesComponent},
       {path: 'manageresources',component:ManageresourcesComponent},
       {path: 'managecategories',component:ManagecategoriesComponent} 
   ]},
-  { path:'updateprofile/:id',component:UpdateprofileComponent},
-  { path:'productdetails/:empId/:data',component:ProductdetailsComponent},
-  { path:'employeeorders/:id/:username',component:EmployeeOrdersComponent},
-  { path:'products',component:ProductsComponent},
+  { path:'updateprofile/:id',component:UpdateprofileComponent,canActivate:[AuthGuardGuard]},
+  { path:'productdetails/:empId/:username/:data',component:ProductdetailsComponent,canActivate:[AuthGuardGuard]},
+  { path:'employeeorders/:id/:username',component:EmployeeOrdersComponent,canActivate:[AuthGuardGuard]},
+  { path:'products',component:ProductsComponent,canActivate:[AuthGuardGuard]},
   { path:'qr',component:QrComponent}
   
 ];

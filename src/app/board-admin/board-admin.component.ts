@@ -15,6 +15,7 @@ export class BoardAdminComponent implements OnInit {
   empId: any;
   isLoggedIn=false;
   username: any;
+  role: any;
 
 
   constructor(public router: Router, private userService: UserService, private authService: AuthService, private tokenStorageService: TokenStorageService) { }
@@ -27,7 +28,6 @@ export class BoardAdminComponent implements OnInit {
       },
       err => {
         this.content = JSON.parse(err.error).message;
-        this.router.navigate(['/login']);
       }
     );
 
@@ -37,6 +37,7 @@ export class BoardAdminComponent implements OnInit {
       const user = this.tokenStorageService.getUser();
       this.empId = user.id;
       this.username = user.username;
+      this.role=user.roles[0];
     }
 
 this.getAllResources();

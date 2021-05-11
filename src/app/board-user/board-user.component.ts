@@ -15,6 +15,7 @@ export class BoardUserComponent implements OnInit {
   empId: any;
   isLoggedIn=false;
   username: any;
+  role: any;
 
 
   constructor(public router: Router, private userService: UserService, private authService: AuthService, private tokenStorageService: TokenStorageService) { }
@@ -27,7 +28,6 @@ export class BoardUserComponent implements OnInit {
       },
       err => {
         this.content = JSON.parse(err.error).message;
-        this.router.navigate(['/login']);
       }
     );
 
@@ -37,6 +37,7 @@ export class BoardUserComponent implements OnInit {
       const user = this.tokenStorageService.getUser();
       this.empId = user.id;
       this.username = user.username;
+      this.role=user.roles[0];
     }
 
 this.getAllResources();
@@ -54,7 +55,7 @@ this.getAllResources();
 
   selectedProduct(res:any)
   {
-    this.router.navigate(['/productdetails',this.empId,JSON.stringify(res)]);
+    this.router.navigate(['/productdetails',this.empId, this.username, JSON.stringify(res)]);
   }
   
 }

@@ -1,3 +1,4 @@
+<div *ngIf="role=='ROLE_ADMIN'">
 <header>
   <div class="jumbotron color-grey-light mt-70" style="padding: 0px; height: 100px;">
     <div class="d-flex align-items-center h-100">
@@ -15,5 +16,9 @@
   </nav>
   <router-outlet></router-outlet>
 </div>
+</div>
 
+<div class="alert alert-danger" *ngIf="role!='ROLE_ADMIN'">
+  <strong>Unauthorized Access!</strong>
+</div>
 

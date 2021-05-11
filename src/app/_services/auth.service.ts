@@ -16,6 +16,10 @@ const httpOptions = {
 export class AuthService {
   constructor(private http: HttpClient) { }
 
+  loggedIn():boolean{
+    return sessionStorage.getItem('auth-token')!=null;
+  }
+
   login(username: string, password: string): Observable<any> {
     return this.http.post(AUTH_API + 'signin', {
       username,
